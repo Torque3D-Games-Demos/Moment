@@ -12,6 +12,7 @@ game/core/fonts
 ## Preferences
 prefs.cs
 game/tools/settings.xml
+banlist.cs
 
 ## Procedural shaders
 game/shaders/procedural
