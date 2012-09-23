@@ -1,0 +1,21 @@
+## Build files
+buildFiles/Link
+buildFiles/VisualStudio*
+
+## Built files
+game/*_DEBUG*
+game/core/fonts
+
+## Scripts
+*.dso
+
+## Preferences
+prefs.cs
+game/tools/settings.xml
+
+## Procedural shaders
+game/shaders/procedural
+!game/shaders/procedural/.gitignore
+
+## Miscellaneous
+game/console.log
