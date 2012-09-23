@@ -1,0 +1,50 @@
+//-----------------------------------------------------------------------------
+// Copyright (c) 2012 GarageGames, LLC
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to
+// deal in the Software without restriction, including without limitation the
+// rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+// sell copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+// IN THE SOFTWARE.
+//-----------------------------------------------------------------------------
+
+singleton TSShapeConstructor(FP_SoldierArmsDAE)
+{
+   baseShape = "./FP_SoldierArms.DAE";
+   loadLights = "0";
+};
+
+function FP_SoldierArmsDAE::onLoad(%this)
+{
+   // BEGIN: General rifle Sequences
+   // Extracted from Lurker
+   %this.addSequence("art/shapes/weapons/rifle/rifle.DAE run", "Rifle_run");
+   %this.addSequence("art/shapes/weapons/rifle/rifle.DAE sprint", "Rifle_sprint");
+   %this.addSequence("art/shapes/weapons/rifle/rifle.DAE idle", "Rifle_idle");
+   %this.addSequence("art/shapes/weapons/rifle/rifle.DAE idle_fidget1", "Rifle_idle_fidget1");
+   %this.addSequence("art/shapes/weapons/rifle/rifle.DAE fire", "Rifle_fire");
+   %this.addSequence("art/shapes/weapons/rifle/rifle.DAE reload", "Rifle_reload");
+   %this.addSequence("art/shapes/weapons/rifle/rifle.DAE fire_alt", "Rifle_fire_alt");
+   %this.addSequence("art/shapes/weapons/rifle/rifle.DAE switch_out", "Rifle_switch_out");
+   %this.addSequence("art/shapes/weapons/rifle/rifle.DAE switch_in", "Rifle_switch_in");
+   
+   %this.setSequenceCyclic("Rifle_idle_fidget1", "0");
+   %this.setSequenceCyclic("Rifle_fire", "0");
+   %this.setSequenceCyclic("Rifle_reload", "0");
+   %this.setSequenceCyclic("Rifle_fire_alt", "0");
+   %this.setSequenceCyclic("Rifle_switch_out", "0");
+   %this.setSequenceCyclic("Rifle_switch_in", "0");
+   // END: General rifle Sequences
+}

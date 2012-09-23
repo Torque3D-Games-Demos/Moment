@@ -22,3 +22,7 @@
 
 // Load up all datablocks.  This function is called when
 // a server is constructed.
+
+exec("./actors/soldier.cs");
+
+exec("./vehicles/cheetah.cs");
