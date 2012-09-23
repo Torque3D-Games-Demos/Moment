@@ -3,8 +3,8 @@ Moment
 
 A Torque3D script project.
 
-Installation
-------------
+Install
+-------
 
 Clone this project into your Torque 3D projects directory like so:
 
