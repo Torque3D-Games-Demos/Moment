@@ -23,3 +23,10 @@
 //-----------------------------------------------------------------------------
 // Misc. server commands avialable to clients
 //-----------------------------------------------------------------------------
+
+function serverCmdInteract(%client)
+{
+   if(%client.getControlObject() == %client.player)
+   {
+   }
+}

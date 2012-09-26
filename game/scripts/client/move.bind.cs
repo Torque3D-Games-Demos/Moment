@@ -215,6 +215,21 @@ moveMap.bind( gamepad, btn_a, jump );
 moveMap.bindCmd( gamepad, btn_back, "disconnect();", "" );
 
 //------------------------------------------------------------------------------
+// Interaction
+//------------------------------------------------------------------------------
+
+function interact(%val)
+{
+   if(%val)
+   {
+      commandToServer('interact');
+   }
+}
+
+moveMap.bind( keyboard, f, interact );
+moveMap.bind( gamepad, btn_b, interact );
+
+//------------------------------------------------------------------------------
 // Mouse Trigger
 //------------------------------------------------------------------------------
 
