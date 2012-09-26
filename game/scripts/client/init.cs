@@ -72,11 +72,9 @@ function initClient()
    // Load up the shell GUIs
    if($platform !$= "xenon")  // Use the unified shell instead
       exec("art/gui/mainMenuGui.gui");
-   exec("art/gui/StartupGui.gui");
 
    // Gui scripts
    exec("scripts/gui/playGui.cs");
-   exec("scripts/gui/startupGui.cs");
 
    // Client scripts
    exec("./missionDownload.cs");
@@ -84,7 +82,10 @@ function initClient()
 
    // Default player key bindings
    exec("./default.bind.cs");
+   exec("./game.bind.cs");
+   exec("./move.bind.cs");
 
+   // Override keybinds from saved preferences
    if (isFile("./config.cs"))
       exec("./config.cs");
 

@@ -41,8 +41,9 @@ function PlayGui::onWake(%this)
    }      
    
    // just update the action map here
+   gameMap.push();
    moveMap.push();
-
+   
    // hack city - these controls are floating around and need to be clamped
    if ( isFunction( "refreshCenterTextCtrl" ) )
       schedule(0, 0, "refreshCenterTextCtrl");
