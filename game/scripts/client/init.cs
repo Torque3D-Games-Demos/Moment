@@ -80,6 +80,7 @@ function initClient()
    exec("./commands.cs");
    exec("./missionDownload.cs");
    exec("./serverConnection.cs");
+   exec("./interaction.cs");
 
    // Default player key bindings
    exec("./default.bind.cs");
