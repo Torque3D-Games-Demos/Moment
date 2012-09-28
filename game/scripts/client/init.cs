@@ -83,10 +83,10 @@ function initClient()
    exec("./interaction.cs");
 
    // Default player key bindings
-   exec("./default.bind.cs");
-   exec("./game.bind.cs");
-   exec("./move.bind.cs");
-   exec("./vehicle.bind.cs");
+   exec("./bind.default.cs");
+   exec("./bind.game.cs");
+   exec("./bind.move.cs");
+   exec("./bind.vehicle.cs");
 
    // Override keybinds from saved preferences
    if (isFile("./config.cs"))
