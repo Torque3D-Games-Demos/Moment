@@ -90,6 +90,20 @@ function cycleDebugRenderMode(%val)
 GlobalActionMap.bind(keyboard, "F9", cycleDebugRenderMode);
 
 //------------------------------------------------------------------------------
+// Re-execute scripts
+//------------------------------------------------------------------------------
+
+function scriptReloadDialog(%val)
+{
+   if(%val)
+   {
+      Canvas.pushDialog(ScriptReloadDlg);
+   }
+}
+
+GlobalActionMap.bind(keyboard, "alt s", scriptReloadDialog);
+
+//------------------------------------------------------------------------------
 //
 // Start profiler by pressing ctrl f3
 // ctrl f3 - starts profile that will dump to console and file
