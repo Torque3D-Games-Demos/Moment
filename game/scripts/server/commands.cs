@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Copyright (c) 2012 GarageGames, LLC
+// Copyright (c) 2012 Daniel Buckmaster
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -19,6 +19,23 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
+
+// Sanitise client ghost objects.
+function GameConnection::resolveObject(%this, %ghostId, %classes)
+{
+   %obj = %this.resolveObjectFromGhostIndex(%ghostId);
+   if(!isObject(%obj))
+      return -1;
+   if(getWordCount(%classes) == 0)
+      return %obj;
+   %class = %obj.getClassName();
+   for(%word = 0; %word < getWordCount(%classes); %word++)
+   {
+      if(%class $= getWord(%classes, %word))
+         return %obj;
+   }
+   return -1;
+}
 
 //-----------------------------------------------------------------------------
 // Misc. server commands avialable to clients
