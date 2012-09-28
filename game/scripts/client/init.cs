@@ -83,6 +83,7 @@ function initClient()
    exec("./interaction.cs");
 
    // Default player key bindings
+   exec("./bind.debug.cs");
    exec("./bind.default.cs");
    exec("./bind.game.cs");
    exec("./bind.move.cs");
