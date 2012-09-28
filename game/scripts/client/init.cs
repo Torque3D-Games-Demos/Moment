@@ -77,6 +77,7 @@ function initClient()
    exec("scripts/gui/playGui.cs");
 
    // Client scripts
+   exec("./commands.cs");
    exec("./missionDownload.cs");
    exec("./serverConnection.cs");
 

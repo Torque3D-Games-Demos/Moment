@@ -29,3 +29,17 @@ function clientCmdGameEnd(%seq)
    // Stop local activity... the game will be destroyed on the server
    sfxStopAll();
 }
+
+//----------------------------------------------------------------------------
+// Gameplay commands
+//----------------------------------------------------------------------------
+
+function clientCmdMountVehicle()
+{
+   vehicleMap.push();
+}
+
+function clientCmdUnmountVehicle()
+{
+   vehicleMap.pop();
+}
