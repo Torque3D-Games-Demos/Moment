@@ -84,6 +84,7 @@ function initClient()
    exec("./default.bind.cs");
    exec("./game.bind.cs");
    exec("./move.bind.cs");
+   exec("./vehicle.bind.cs");
 
    // Override keybinds from saved preferences
    if (isFile("./config.cs"))
