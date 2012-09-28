@@ -37,6 +37,18 @@ function GameConnection::resolveObject(%this, %ghostId, %classes)
    return -1;
 }
 
+// Sanitise client's control object.
+function GameConnection::resolvePlayer(%client)
+{
+   if(!isObject(%client.player))
+      return -1;
+   if(%client.player.getClassName() !$= "Player")
+      return -1;
+   if(%client.getControlObject() != %client.player)
+      return -1;
+   return %client.player;
+}
+
 //-----------------------------------------------------------------------------
 // Misc. server commands avialable to clients
 //-----------------------------------------------------------------------------
