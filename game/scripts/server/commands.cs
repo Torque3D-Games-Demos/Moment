@@ -50,7 +50,7 @@ function GameConnection::resolvePlayer(%client)
 }
 
 //-----------------------------------------------------------------------------
-// Misc. server commands avialable to clients
+// Gameplay commands
 //-----------------------------------------------------------------------------
 
 function serverCmdMountVehicle(%client, %vehicleGhost, %seat)
@@ -64,8 +64,8 @@ function serverCmdMountVehicle(%client, %vehicleGhost, %seat)
    if(!isObject(%vehicle))
       return;
    if(%vehicle.seatIsFree(%seat) &&
-      VectorLen(VectorSub(%player.getPosition(), %vehicle.getPosition())) < 10) //TODO: make this not a hack.
+      VectorLen(VectorSub(%player.getEyePoint(), %vehicle.getPosition())) < 10) //TODO: make this not a hack.
    {
-      %vehicle.seat(%player, 0);
+      %vehicle.seat(%player, %seat);
    }
 }
