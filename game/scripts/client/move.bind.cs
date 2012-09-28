@@ -222,7 +222,20 @@ function interact(%val)
 {
    if(%val)
    {
-      commandToServer('interact');
+      %player = ServerConnection.getControlObject();
+      if(isObject(%player))
+      {
+         %start = %player.getEyePoint();
+         %end = VectorAdd(%start, VectorScale(%player.getEyeVector(), 2));
+         %mask = $TypeMasks::VehicleObjectType | $TypeMasks::PlayerObjectType;
+         %hit = containerRayCast(%start, %end, %mask, %player, true);
+         if(isObject(getWord(%hit, 0)))
+            beginInteraction(getWord(%hit, 0));
+      }
+   }
+   else
+   {
+      endInteraction();
    }
 }
 
