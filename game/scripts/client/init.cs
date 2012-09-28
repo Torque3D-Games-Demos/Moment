@@ -68,6 +68,7 @@ function initClient()
 
    // Load up the Game GUI
    exec("art/gui/playGui.gui");
+   exec("art/gui/scriptReloadDialog.gui");
 
    // Load up the shell GUIs
    if($platform !$= "xenon")  // Use the unified shell instead
@@ -75,6 +76,7 @@ function initClient()
 
    // Gui scripts
    exec("scripts/gui/playGui.cs");
+   exec("scripts/gui/scriptReloadDialog.cs");
 
    // Client scripts
    exec("./commands.cs");
