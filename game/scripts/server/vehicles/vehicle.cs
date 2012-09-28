@@ -20,3 +20,14 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
+function Vehicle::seatIsFree(%this, %seat)
+{
+   return %seat < %this.getDataBlock().numSeats && !isObject(%this.getMountedObject(%seat));
+}
+
+function Vehicle::seat(%this, %obj, %seat)
+{
+   %this.mountObject(%obj, %seat);
+   if(%seat == %this.getDatablock().driverSeat)
+      %obj.setControlObject(%this);
+}
