@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Copyright (c) 2012 GarageGames, LLC
+// Copyright (c) 2012 Daniel Buckmaster
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -20,8 +20,5 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-// Load up all scripts.  This function is called when
-// a server is constructed.
-
-exec("./vehicles/init.cs");
-exec("./actors/init.cs");
+// Class scripts
+exec("./actor.cs");
