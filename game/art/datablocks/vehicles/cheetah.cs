@@ -136,7 +136,8 @@ datablock WheeledVehicleData(Cheetah)
    emap = 1;
 
    mountPose[0] = sitting;
-   numMountPoints = 6;
+   numSeats = 4;
+   driverSeat = 0;
 
    useEyePoint = true;  // Use the vehicle's camera node rather than the player's
 
