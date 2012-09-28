@@ -53,9 +53,19 @@ function GameConnection::resolvePlayer(%client)
 // Misc. server commands avialable to clients
 //-----------------------------------------------------------------------------
 
-function serverCmdInteract(%client)
+function serverCmdMountVehicle(%client, %vehicleGhost, %seat)
 {
-   if(%client.getControlObject() == %client.player)
+   // Resolve client's player.
+   %player = %client.resolvePlayer();
+   if(!isObject(%player))
+      return;
+   // Resolve ghost object.
+   %vehicle = %client.resolveObject(%vehicleGhost, "WheeledVehicle FlyingVehicle HoverVehicle");
+   if(!isObject(%vehicle))
+      return;
+   if(%vehicle.seatIsFree(%seat) &&
+      VectorLen(VectorSub(%player.getPosition(), %vehicle.getPosition())) < 10) //TODO: make this not a hack.
    {
+      %vehicle.seat(%player, 0);
    }
 }
