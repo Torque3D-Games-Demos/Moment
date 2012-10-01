@@ -22,6 +22,7 @@
 
 // Class scripts
 exec("./vehicle.cs");
+exec("./wheeledVehicle.cs");
 
 // Datablock scripts
 exec("./cheetah.cs");
