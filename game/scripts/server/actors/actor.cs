@@ -22,8 +22,9 @@
 
 function Actor::onMount(%this, %obj, %mount)
 {
-   if(%obj.getCOntrollingClient())
+   if(%obj.getControllingClient())
       commandToClient(%obj.getControllingClient(), 'mountVehicle');
+   %obj.setTransform("0 0 0 0 0 1 0");
 }
 
 function Actor::onUnmount(%this, %obj, %mount)
