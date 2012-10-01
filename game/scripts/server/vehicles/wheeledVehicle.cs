@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Copyright (c) 2012 GarageGames, LLC
+// Copyright (c) 2012 Daniel Buckmaster
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -20,12 +20,18 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-function Cheetah::onAdd(%this, %obj)
+function WheeledVehicleData::onAdd(%this, %obj)
 {
-   Parent::onAdd(%this, %obj);
+   // Setup the car with some tires & springs
+   for (%i = %obj.getWheelCount() - 1; %i >= 0; %i--)
+   {
+      %obj.setWheelTire(%i, %this.tireData[%i]);
+      %obj.setWheelSpring(%i, %this.springData[%i]);
+      %obj.setWheelPowered(%i, %this.wheelPowered[%i]);
+      %obj.setWheelSteering(%i, %this.wheelSteering[%i]);
+   }
 }
 
-function Cheetah::onRemove(%this, %obj)
+function WheeledVehicleData::onRemove(%this, %obj)
 {
-   Parent::onRemove(%this, %obj);
 }

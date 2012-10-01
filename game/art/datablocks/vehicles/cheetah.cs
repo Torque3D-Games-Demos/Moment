@@ -171,6 +171,27 @@ datablock WheeledVehicleData(Cheetah)
    brakeTorque = 10000;        // When brakes are applied
    maxWheelSpeed = 50;        // Engine scale by current speed / max speed
 
+   // Wheels
+   tireData[0] = CheetahCarTire;
+   springData[0] = CheetahCarSpring;
+   wheelPowered[0] = true;
+   wheelSteering[0] = 1;
+
+   tireData[1] = CheetahCarTire;
+   springData[1] = CheetahCarSpring;
+   wheelPowered[1] = true;
+   wheelSteering[1] = 1;
+
+   tireData[2] = CheetahCarTireRear;
+   springData[2] = CheetahCarSpring;
+   wheelPowered[2] = true;
+   wheelSteering[2] = -1;
+
+   tireData[3] = CheetahCarTireRear;
+   springData[3] = CheetahCarSpring;
+   wheelPowered[3] = true;
+   wheelSteering[3] = -1;
+
    // Energy
    maxEnergy = 100;
    jetForce = 3000;
