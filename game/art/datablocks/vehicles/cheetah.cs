@@ -139,7 +139,7 @@ datablock WheeledVehicleData(Cheetah)
    numSeats = 4;
    driverSeat = 0;
 
-   useEyePoint = true;  // Use the vehicle's camera node rather than the player's
+   useEyePoint = false;  // Use the vehicle's camera node rather than the player's
 
    maxSteeringAngle = 0.585;  // Maximum steering angle, should match animation
 
