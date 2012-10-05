@@ -94,5 +94,20 @@
          useURLMouseCursor = "0";
       };
    };
+   
+   new GuiSelectHud(SelectHud) {
+      canSaveDynamicFields = "0";
+      isContainer = "0";
+      Profile = "GuiDefaultProfile";
+      HorizSizing = "right";
+      VertSizing = "bottom";
+      position = "0 0";
+      Extent = "1024 768";
+      MinExtent = "8 8";
+      canSave = "1";
+      Visible = "1";
+      tooltipprofile = "GuiToolTipProfile";
+      hovertime = "1000";
+   };
 };
 //--- OBJECT WRITE END ---
