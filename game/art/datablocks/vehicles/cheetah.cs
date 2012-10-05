@@ -141,8 +141,6 @@ datablock WheeledVehicleData(Cheetah)
 
    useEyePoint = false;  // Use the vehicle's camera node rather than the player's
 
-   maxSteeringAngle = 0.585;  // Maximum steering angle, should match animation
-
    // 3rd person camera settings
    cameraRoll = false;        // Roll the camera with the vehicle
    cameraMaxDist = 7.8;       // Far distance from vehicle
@@ -171,6 +169,12 @@ datablock WheeledVehicleData(Cheetah)
    brakeTorque = 10000;        // When brakes are applied
    maxWheelSpeed = 50;        // Engine scale by current speed / max speed
 
+   // Steering
+   maxSteeringAngle = 0.585;  // Maximum steering angle, should match animation
+   powerSteering = true;
+   steeringReturn = 1;
+   steeringReturnSpeedScale = 0.5;
+
    // Wheels
    tireData[0] = CheetahCarTire;
    springData[0] = CheetahCarSpring;
@@ -185,12 +189,12 @@ datablock WheeledVehicleData(Cheetah)
    tireData[2] = CheetahCarTireRear;
    springData[2] = CheetahCarSpring;
    wheelPowered[2] = true;
-   wheelSteering[2] = -1;
+   wheelSteering[2] = 0;
 
    tireData[3] = CheetahCarTireRear;
    springData[3] = CheetahCarSpring;
    wheelPowered[3] = true;
-   wheelSteering[3] = -1;
+   wheelSteering[3] = 0;
 
    // Energy
    maxEnergy = 100;
