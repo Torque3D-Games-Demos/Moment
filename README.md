@@ -3,18 +3,20 @@ Moment
 
 A Torque3D script project.
 
-Install
--------
+Getting Moment
+--------------
 
-Clone this project into your Torque 3D projects directory like so:
+Moment relies on source code changes that are maintained in my own fork of Torque3D.
+To use Moment, first clone my fork:
 
 ```
-cd My Projects
+git clone https://github.com/eightyeight/Torque3D.git Torque3D-eightyeight
+cd Torque3D-eightyeight
+git checkout eightyeight
+```
+
+Then you can clone Moment into the projects directory:
+```
+cd My\ Projects
 git clone https://github.com/eightyeight/Moment.git Moment
 ```
-
-Compile
--------
-
-Moment comes with a precompiled executable, but should you wish to compile it yourself,
-you can use the `generateProjects.bat` script to generate VS/Xcode files.
