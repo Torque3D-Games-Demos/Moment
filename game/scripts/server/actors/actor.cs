@@ -29,6 +29,8 @@ function Actor::onMount(%this, %obj, %mount)
 
 function Actor::onUnmount(%this, %obj, %mount)
 {
-   if(%obj.getCOntrollingClient())
+   if(%obj.getControlObject() != 0)
+      %obj.setControlObject(0);
+   if(%obj.getControllingClient())
       commandToClient(%obj.getControllingClient(), 'unmountVehicle');
 }
