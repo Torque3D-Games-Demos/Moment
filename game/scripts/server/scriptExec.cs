@@ -25,3 +25,4 @@
 
 exec("./vehicles/init.cs");
 exec("./actors/init.cs");
+exec("./ai/init.cs");
