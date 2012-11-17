@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Copyright (c) 2012 GarageGames, LLC
+// Copyright (c) 2012 Daniel Buckmaster
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -20,9 +20,38 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-// Load up all scripts.  This function is called when
-// a server is constructed.
+$AIPlayer::SpeechSlot = 0;
 
-exec("./vehicles/init.cs");
-exec("./actors/init.cs");
-exec("./ai/init.cs");
+function AIPlayer::say(%this, %phrase, %voice)
+{
+   if (!isObject(%voice))
+      %voice = DefaultVoice;
+   
+   %this.stopTalking();
+   
+   %sound = %voice.getValue(%voice.getIndexFromKey(%phrase));
+   if (isObject(%sound))
+   {
+      %this.playAudio($AIPlayer::SpeechSlot, %sound);
+      %this.stopTalking = %this.getDataBlock().schedule(%sound.getSoundDuration() * 1000, "onFinishedTalking", %this);
+   }
+}
+
+function AIPlayer::stopTalking(%this)
+{
+   %this.stopAudio($AIPlayer::SpeechSlot);
+   if (%this.stopTalking)
+   {
+      cancel(%this.stopTalking);
+      %this.getDatablock().onFinishedTalking(%this);
+   }
+}
+
+function PlayerData::onFinishedTalking(%this, %obj)
+{
+   %obj.stopTalking = 0;
+}
+
+new ArrayObject(DefaultVoice);
+DefaultVoice.add("ouch", HumanMalePainSound);
+DefaultVoice.add("ouch!", HumanMaleDeathSound);

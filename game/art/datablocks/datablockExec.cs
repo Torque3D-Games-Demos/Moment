@@ -26,3 +26,5 @@
 exec("./actors/soldier.cs");
 
 exec("./vehicles/cheetah.cs");
+
+exec("./sound/voice.cs");
