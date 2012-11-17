@@ -29,7 +29,6 @@ datablock PlayerData(DefaultPlayerData)
    class = "Actor";
    computeCRC = false;
 
-
    // Third person shape
    shapeFile = "art/shapes/actors/soldier/soldier_rigged.dae";
    cameraMaxDist = 3;
@@ -41,7 +40,7 @@ datablock PlayerData(DefaultPlayerData)
    shapeNameFP[0] = "art/shapes/actors/soldier/FP/FP_SoldierArms.DAE";
 
    // Camera data
-   renderFirstPerson = false;
+   renderFirstPerson = true;
    canObserve = 1;
    cmdCategory = "Clients";
 
