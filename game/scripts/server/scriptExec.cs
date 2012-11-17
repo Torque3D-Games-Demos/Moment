@@ -23,5 +23,6 @@
 // Load up all scripts.  This function is called when
 // a server is constructed.
 
+exec("./weapons/init.cs");
 exec("./vehicles/init.cs");
 exec("./actors/init.cs");

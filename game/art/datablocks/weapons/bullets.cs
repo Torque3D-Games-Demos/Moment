@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Copyright (c) 2012 GarageGames, LLC
+// Copyright (c) 2012 Daniel Buckmaster
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -20,11 +20,15 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-// Load up all datablocks.  This function is called when
-// a server is constructed.
-
-exec("./weapons/bullets.cs");
-
-exec("./actors/soldier.cs");
-
-exec("./vehicles/cheetah.cs");
+datablock ProjectileData(SmallBulletData)
+{
+   //projectileShapeName = "art/shapes/
+   muzzleVelocity = 200;
+   
+   directDamage = 30;
+   damageType = "Piercing";
+   
+   isBallistic = true;
+   gravityMod = 1;
+   velInheritFactor = 1;
+};

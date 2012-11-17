@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Copyright (c) 2012 GarageGames, LLC
+// Copyright (c) 2012 Daniel Buckmaster
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -20,11 +20,14 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-// Load up all datablocks.  This function is called when
-// a server is constructed.
+// Please do not override this method.
+function ShapeBase::damage(%this, %sourceObject, %position, %damage, %type)
+{
+   %this.getDataBlock().damage(%this, %sourceObject, %position, %damage, %type);
+}
 
-exec("./weapons/bullets.cs");
-
-exec("./actors/soldier.cs");
-
-exec("./vehicles/cheetah.cs");
+// Please override this method.
+function ShapeBaseData::damage(%this, %obj, %position, %source, %amount, %type)
+{
+   %obj.applyDamage(%amount);
+}

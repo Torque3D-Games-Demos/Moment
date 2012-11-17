@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Copyright (c) 2012 GarageGames, LLC
+// Copyright (c) 2012 Daniel Buckmaster
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -20,11 +20,17 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-// Load up all datablocks.  This function is called when
-// a server is constructed.
+function ProjectileData::onCollision(%data, %proj, %col, %fade, %pos, %normal)
+{
+   if(%data.directDamage > 0)
+   {
+      if(%col.getType() & ($TypeMasks::ShapeBaseObjectType))
+         %col.damage(%proj, %pos, %data.directDamage, %data.damageType);
+   }
+}
 
-exec("./weapons/bullets.cs");
-
-exec("./actors/soldier.cs");
-
-exec("./vehicles/cheetah.cs");
+function ProjectileData::onExplode(%data, %proj, %position, %fade)
+{
+   if(%data.damageRadius > 0)
+      radiusDamage(%proj, %position, %data.damageRadius, %data.radiusDamage, %data.damageType, %data.areaImpulse);
+}
