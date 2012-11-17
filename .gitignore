@@ -5,6 +5,8 @@ buildFiles/VisualStudio*
 ## Built files
 game/*_DEBUG*
 game/core/fonts
+*.exe
+*.dll
 
 ## Scripts
 *.dso
@@ -18,5 +20,12 @@ banlist.cs
 game/shaders/procedural
 !game/shaders/procedural/.gitignore
 
+## Art
+game/art
+game/levels
+!game/art/datablocks
+!game/art/main.cs
+
 ## Miscellaneous
 game/console.log
+*config.cs
