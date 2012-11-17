@@ -20,6 +20,19 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
+function Actor::onAdd(%this, %obj)
+{
+   if(%obj.getClassName() $= "AIPlayer")
+   {
+      %obj.brain = new BehaviorManager() {
+         resources[0] = "move";
+         resources[1] = "aim";
+         resources[2] = "voice";
+         object = %obj;
+      };
+   }
+}
+
 function Actor::onMount(%this, %obj, %mount)
 {
    if(%obj.getControllingClient())
@@ -30,4 +43,22 @@ function Actor::onUnmount(%this, %obj, %mount)
 {
    if(%obj.getControllingClient())
       commandToClient(%obj.getControllingClient(), 'unmountVehicle');
+}
+
+function Actor::onReachDestination(%this, %obj)
+{
+   if(isObject(%obj.brain))
+      %obj.brain.event("onReachDestination");
+}
+
+function Actor::onStuck(%this, %obj)
+{
+   if(isObject(%obj.brain))
+      %obj.brain.event("onStuck");
+}
+
+function Actor::onFinishedTalking(%this, %obj)
+{
+   if(isObject(%obj.brain))
+      %obj.brain.event("onFinishedTalking");
 }
