@@ -27,10 +27,11 @@ function AIPlayer::say(%this, %phrase, %voice)
    if (!isObject(%voice))
       %voice = DefaultVoice;
    
-   if (isObject(%voice[%phrase]))
-      %this.playAudio($AIPlayer::SpeechSlot, %voice[%phrase]);
+   %sound = %voice.getValue(%voice.getIndexFromKey(%phrase));
+   if (isObject(%sound))
+      %this.playAudio($AIPlayer::SpeechSlot, %sound);
 }
 
-DefaultVoice = new ArrayObject();
-DefaultVoice["ouch"] = HumanMalePainSound;
-DefaultVoice["ouch!"] = HumanMaleDeathSound;
+new ArrayObject(DefaultVoice);
+DefaultVoice.add("ouch", HumanMalePainSound);
+DefaultVoice.add("ouch!", HumanMaleDeathSound);
