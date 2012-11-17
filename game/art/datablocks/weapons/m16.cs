@@ -20,10 +20,38 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-// Class scripts
-exec("./projectile.cs");
-exec("./damage.cs");
-exec("./radiusDamage.cs");
+$n = -1;
+datablock ShapeBaseImageData(M16Image)
+{
+   shapeFile = "art/shapes/weapons/m16/m16.dts";
+   
+   mountPoint = 0;
+   
+   stateName[$n++] = "ready";
+   stateTransitionOnNoAmmo[$n] = "dry";
+   stateTransitionOnTriggerDown[$n] = "fire";
+   
+   stateName[$n++] = "dry";
+   stateTransitionOnLoaded[$n] = "ready";
+   stateTransitionOnTriggerDown[$n] = "dryFire";
+   
+   stateName[$n++] = "dryFire";
+   stateTransitionOnTriggerUp[$n] = "dry";
+   
+   stateName[$n++] = "fire";
+   stateScript[$n] = "onFire";
+   stateFire[$n] = true;
+   stateTransitionOnTriggerUp[$n] = "ready";
+};
 
-// Datablock scripts
-exec("./m16.cs");
+datablock ItemData(M16Item)
+{
+   shapeFile = "art/shapes/weapons/m16/m16.dts";
+   
+   mass = 10;
+   friction = 0.9;
+   elasticity = 0.1;
+   density = 50;
+   
+   name = "M16 rifle";
+};

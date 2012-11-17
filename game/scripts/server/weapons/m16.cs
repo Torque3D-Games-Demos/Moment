@@ -20,10 +20,21 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-// Class scripts
-exec("./projectile.cs");
-exec("./damage.cs");
-exec("./radiusDamage.cs");
-
-// Datablock scripts
-exec("./m16.cs");
+function M16Image::onFire(%this, %obj, %slot)
+{
+   %muzzleVel = VectorAdd(
+      VectorScale(%obj.getMuzzleVector(%slot), %this.projectile.muzzleVelocity),
+      VectorScale(%obj.getVelocity(), %this.projectile.velInheritFactor));
+   
+   %p = new Projectile()
+   {
+      dataBlock = SmallBulletData;
+      initialVelocity = %muzzleVel;
+      initialPosition = %obj.getMuzzlePoint(%slot);
+      sourceObject = %obj;
+      sourceSlot = %slot;
+      client = %obj.client;
+      sourceClass = %obj.getClassName();
+   };
+   MissionCleanup.add(%p);
+}

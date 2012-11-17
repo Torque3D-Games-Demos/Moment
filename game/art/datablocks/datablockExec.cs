@@ -24,6 +24,7 @@
 // a server is constructed.
 
 exec("./weapons/bullets.cs");
+exec("./weapons/m16.cs");
 
 exec("./actors/soldier.cs");
 
