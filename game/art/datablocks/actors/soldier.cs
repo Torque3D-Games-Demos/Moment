@@ -136,4 +136,6 @@ datablock PlayerData(DefaultPlayerData)
    groundImpactShakeFalloff = 10.0;
 
    observeParameters = "0.5 4.5 4.5";
+   firstPersonShadows = "1";
+   useEyePoint = "1";
 };
