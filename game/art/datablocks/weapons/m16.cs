@@ -24,6 +24,7 @@ $n = -1;
 datablock ShapeBaseImageData(M16Image)
 {
    shapeFile = "art/shapes/weapons/m16/m16.dts";
+   projectile = SmallBulletData;
    
    mountPoint = 0;
    
@@ -32,7 +33,7 @@ datablock ShapeBaseImageData(M16Image)
    stateTransitionOnTriggerDown[$n] = "fire";
    
    stateName[$n++] = "dry";
-   stateTransitionOnLoaded[$n] = "ready";
+   stateTransitionOnAmmo[$n] = "ready";
    stateTransitionOnTriggerDown[$n] = "dryFire";
    
    stateName[$n++] = "dryFire";
@@ -47,6 +48,7 @@ datablock ShapeBaseImageData(M16Image)
 datablock ItemData(M16Item)
 {
    shapeFile = "art/shapes/weapons/m16/m16.dts";
+   category = "Weapons";
    
    mass = 10;
    friction = 0.9;

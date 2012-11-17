@@ -28,7 +28,7 @@ function M16Image::onFire(%this, %obj, %slot)
    
    %p = new Projectile()
    {
-      dataBlock = SmallBulletData;
+      dataBlock = %this.projectile;
       initialVelocity = %muzzleVel;
       initialPosition = %obj.getMuzzlePoint(%slot);
       sourceObject = %obj;
