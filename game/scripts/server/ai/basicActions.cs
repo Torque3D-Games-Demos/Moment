@@ -20,5 +20,50 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-exec("./speech.cs");
-exec("./basicActions.cs");
+new AIAction(AIMoveToAction) {
+   resource = "move";
+   allowWait = true;
+   receiveEvents = true;
+};
+
+function AIMoveToAction::onStart(%this, %obj, %data, %resume)
+{
+   if(isObject(%data))
+      %obj.setMoveDestination(%data.getPosition());
+   else
+      %obj.setMoveDestination(%data);
+}
+
+function AIMoveToAction::onEvent(%this, %obj, %data, %event)
+{
+   switch$(%event)
+   {
+      case "onReachDestination": return "Complete";
+      case "onStuck":            return "Failed";
+   }
+   return "Working";
+}
+
+new AIAction(AISpeechAction) {
+   resource = "voice";
+   allowWait = true;
+   receiveEvents = true;
+};
+
+function AISpeechAction::onStart(%this, %obj, %data, %resume)
+{
+   %obj.say(%data);
+}
+
+function AISpeechAction::onEvent(%this, %obj, %data, %event)
+{
+   if(%event $= "onFinishedTalking")
+      return "Complete";
+   return "Working";
+}
+
+new AIAction(AIPainAction : AISpeechAction) {
+   class = AISpeechAction;
+   // No use playing pain at all if it's not immediate.
+   allowWait = false;
+};
