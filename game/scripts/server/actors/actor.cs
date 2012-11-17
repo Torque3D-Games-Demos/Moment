@@ -22,12 +22,12 @@
 
 function Actor::onMount(%this, %obj, %mount)
 {
-   if(%obj.getCOntrollingClient())
+   if(%obj.getControllingClient())
       commandToClient(%obj.getControllingClient(), 'mountVehicle');
 }
 
 function Actor::onUnmount(%this, %obj, %mount)
 {
-   if(%obj.getCOntrollingClient())
+   if(%obj.getControllingClient())
       commandToClient(%obj.getControllingClient(), 'unmountVehicle');
 }
