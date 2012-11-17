@@ -32,6 +32,11 @@ function AIPlayer::say(%this, %phrase, %voice)
       %this.playAudio($AIPlayer::SpeechSlot, %sound);
 }
 
+function AIPlayer::stopTalking(%this)
+{
+   %this.stopAudio($AIPlayer::SpeechSlot);
+}
+
 new ArrayObject(DefaultVoice);
 DefaultVoice.add("ouch", HumanMalePainSound);
 DefaultVoice.add("ouch!", HumanMaleDeathSound);
