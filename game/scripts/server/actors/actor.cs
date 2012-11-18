@@ -22,14 +22,36 @@
 
 function Actor::onAdd(%this, %obj)
 {
-   if(%obj.getClassName() $= "AIPlayer" && %this.brainClass !$= "")
+   if(%obj.getClassName() $= "AIPlayer")
    {
-      %obj.brain = new BehaviorManager() {
-         class = %this.brainClass;
-         object = %obj;
-      };
+      if(%this.brainClass !$= "")
+      {
+         %obj.brain = new BehaviorManager() {
+            class = %this.brainClass;
+            object = %obj;
+         };
+      }
+      if(%this.sensorData !$= "")
+      {
+         %obj.senses = new Sensor() {
+            datablock = %this.sensorData;
+            object = %obj;
+            callbackObject = %this;
+         };
+      }
    }
 }
+
+function Actor::onRemove(%this, %obj)
+{
+   if(isObject(%obj.brain))
+      %obj.brain.delete();
+   if(isObject(%obj.senses))
+      %obj.senses.delete();
+}
+
+//-----------------------------------------------------------------------------
+// Mounting and control objects
 
 function Actor::onMount(%this, %obj, %mount)
 {
@@ -42,6 +64,9 @@ function Actor::onUnmount(%this, %obj, %mount)
    if(%obj.getControllingClient())
       commandToClient(%obj.getControllingClient(), 'unmountVehicle');
 }
+
+//-----------------------------------------------------------------------------
+// AI events
 
 function Actor::onReachDestination(%this, %obj)
 {
@@ -63,6 +88,30 @@ function Actor::onFinishedTalking(%this, %obj)
 
 function Actor::onDamage(%this, %obj, %position, %source, %amount, %type)
 {
-   if(%obj.brain)
+   if(isObject(%obj.brain))
       %obj.brain.onEvent("onDamage", %amount SPC %type);
+}
+
+function Actor::onNewContact(%this, %obj, %contact, %vis)
+{
+   if(isObject(%obj.brain))
+      %obj.brain.onEvent("onNewContact", %contact SPC %vis);
+}
+
+function Actor::onContactSighted(%this, %obj, %contact, %vis)
+{
+   if(isObject(%obj.brain))
+      %obj.brain.onEvent("onContactSighted", %contact SPC %vis);
+}
+
+function Actor::onContactLost(%this, %obj, %contact, %vis)
+{
+   if(isObject(%obj.brain))
+      %obj.brain.onEvent("onContactLost", %contact SPC %vis);
+}
+
+function Actor::onContactVisibilityChanged(%this, %obj, %contact, %vis)
+{
+   if(isObject(%obj.brain))
+      %obj.brain.onEvent("onContactVisibilityChanged", %contact SPC %vis);
 }
