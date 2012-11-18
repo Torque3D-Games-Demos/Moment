@@ -44,6 +44,11 @@ function AIMoveToAction::onEvent(%this, %obj, %data, %event)
    return "Working";
 }
 
+function AIMoveToAction::onEnd(%this, %obj, %status)
+{
+   %obj.stop();
+}
+
 new AIAction(AISpeechAction) {
    resource = "voice";
    allowWait = true;
