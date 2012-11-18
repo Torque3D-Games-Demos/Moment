@@ -30,6 +30,7 @@ datablock PlayerData(DefaultPlayerData)
    computeCRC = false;
 
    brainClass = BasicBrain;
+   sensorData = BasicSensor;
 
    // Third person shape
    shapeFile = "art/shapes/actors/soldier/soldier_rigged.dae";

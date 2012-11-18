@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Copyright (c) 2012 GarageGames, LLC
+// Copyright (c) 2012 Daniel Buckmaster
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -20,15 +20,18 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-// Load up all datablocks.  This function is called when
-// a server is constructed.
+$rule = -1;
+datablock SensorData(BasicSensor)
+{
+   engagementRange = 50;
+   typemask = $TypeMasks::ShapeBaseObjectType;
 
-exec("./weapons/bullets.cs");
-exec("./weapons/m16.cs");
+   rules[$rule++] = "Angle 110";
 
-exec("./actors/soldier.cs");
-exec("./ai/basicSensor.cs");
+   rules[$rule++] = "Distance 50";
 
-exec("./vehicles/cheetah.cs");
+   rules[$rule++] = "Angle2D 90 30";
+   range[$rule]   = "0.3 1.0";
 
-exec("./sound/voice.cs");
+   rules[$rule++] = "Raycast 1" SPC $TypeMasks::StaticObjectType;
+};
