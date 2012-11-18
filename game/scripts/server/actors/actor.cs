@@ -22,12 +22,10 @@
 
 function Actor::onAdd(%this, %obj)
 {
-   if(%obj.getClassName() $= "AIPlayer")
+   if(%obj.getClassName() $= "AIPlayer" && %this.brainClass !$= "")
    {
       %obj.brain = new BehaviorManager() {
-         resources[0] = "move";
-         resources[1] = "aim";
-         resources[2] = "voice";
+         class = %this.brainClass;
          object = %obj;
       };
    }
@@ -48,17 +46,23 @@ function Actor::onUnmount(%this, %obj, %mount)
 function Actor::onReachDestination(%this, %obj)
 {
    if(isObject(%obj.brain))
-      %obj.brain.event("onReachDestination");
+      %obj.brain.onEvent("onReachDestination");
 }
 
 function Actor::onStuck(%this, %obj)
 {
    if(isObject(%obj.brain))
-      %obj.brain.event("onStuck");
+      %obj.brain.onEvent("onStuck");
 }
 
 function Actor::onFinishedTalking(%this, %obj)
 {
    if(isObject(%obj.brain))
-      %obj.brain.event("onFinishedTalking");
+      %obj.brain.onEvent("onFinishedTalking");
+}
+
+function Actor::onDamage(%this, %obj, %position, %source, %amount, %type)
+{
+   if(%obj.brain)
+      %obj.brain.onEvent("onDamage", %amount SPC %type);
 }

@@ -29,6 +29,8 @@ datablock PlayerData(DefaultPlayerData)
    class = "Actor";
    computeCRC = false;
 
+   brainClass = BasicBrain;
+
    // Third person shape
    shapeFile = "art/shapes/actors/soldier/soldier_rigged.dae";
    cameraMaxDist = 3;
