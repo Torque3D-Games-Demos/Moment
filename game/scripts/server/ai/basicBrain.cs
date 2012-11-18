@@ -28,7 +28,7 @@ function BasicBrain::onAdd(%this)
 function BasicBrain::onEvent(%this, %event, %data)
 {
    // Dispatch event to running actions.
-   %this.event(%event);
+   %this.event(%event, %data);
    
    // React to event however we feel necessary.
    switch$(%event)
