@@ -44,20 +44,40 @@ function AIMoveToAction::onStart(%this, %obj, %data, %resume)
       %obj.setMoveDestination(%data);
 }
 
-function AIMoveToAction::onEvent(%this, %obj, %data, %event)
+function AIMoveToAction::onEvent(%this, %obj, %data, %event, %evtData)
 {
    switch$(%event)
    {
       case "onReachDestination": return "Complete";
       case "onStuck":            return "Failed";
+      default: return "Working";
    }
-   return "Working";
 }
 
 function AIMoveToAction::onEnd(%this, %obj, %status)
 {
    %obj.stop();
 }
+
+//-----------------------------------------------------------------------------
+
+new AIAction(AIWalkToAction : AIMoveToAction) {
+   class = AIMoveToAction;
+};
+
+function AIWalkToAction::onStart(%this, %obj, %data, %resume)
+{
+   %obj.setMoveSpeed(0.2);
+   Parent::onStart(%this, %obj, %data, %resume);
+}
+
+function AIWalkToAction::onEnd(%this, %obj, %status)
+{
+   %obj.setMoveSpeed(1);
+   Parent::onEnd(%this, %obj, %status);
+}
+
+//-----------------------------------------------------------------------------
 
 new AIAction(AISpeechAction) {
    resource = "voice";
@@ -70,15 +90,71 @@ function AISpeechAction::onStart(%this, %obj, %data, %resume)
    %obj.say(%data);
 }
 
-function AISpeechAction::onEvent(%this, %obj, %data, %event)
+function AISpeechAction::onEvent(%this, %obj, %data, %event, %evtData)
 {
    if(%event $= "onFinishedTalking")
       return "Complete";
    return "Working";
 }
 
+//-----------------------------------------------------------------------------
+
 new AIAction(AIPainAction : AISpeechAction) {
    class = AISpeechAction;
    // No use playing pain at all if it's not immediate.
    allowWait = false;
 };
+
+//-----------------------------------------------------------------------------
+
+new AIAction(AILookAtAction) {
+   resource = "aim";
+   allowWait = true;
+   receiveEvents = true;
+};
+
+function AILookAtAction::onStart(%this, %obj, %data, %resume)
+{
+   if(isObject(%data))
+      %obj.setAimObject(%data);
+   else
+      %obj.setAimLocation(%data);
+}
+
+function AILookAtAction::onEvent(%this, %obj, %data, %event, %evtData)
+{
+   switch$(%event)
+   {
+      case "onTargetExitLOS": return "Failed";
+      default: return "Working";
+   }
+}
+
+function AILookAtAction::onEnd(%this, %obj, %status)
+{
+   %obj.clearAim();
+}
+
+//-----------------------------------------------------------------------------
+
+new AIAction(AIGlanceAtAction : AILookAtAction) {
+   class = AILookAtAction;
+   allowWait = false;
+};
+
+function AIGlanceAtAction::onStart(%this, %obj, %data, %resume)
+{
+   // HAXX0RS
+   %obj.brain.schedule(1000, event, "beat", "");
+   Parent::onStart(%this, %obj, %data, %resume);
+}
+
+function AIGlanceAtAction::onEvent(%this, %obj, %data, %event, %evtData)
+{
+   switch$(%event)
+   {
+      // This needs to be replaced with better timing logic.
+      case "beat": return "Complete";
+      default: return Parent::onEvent(%this, %obj, %data, %event, %evtData);
+   }
+}

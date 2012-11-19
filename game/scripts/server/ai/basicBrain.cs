@@ -39,5 +39,8 @@ function BasicBrain::onEvent(%this, %event, %data)
             ? "ouch"
             : "ouch!";
          %this.startAction(AIPainAction, getMin(0.9, %amount / 100), %pain);
+      
+      case "onContactSighted":
+         %this.startAction(AIGlanceAtAction, 0.1, getWord(%data, 0));
    }
 }

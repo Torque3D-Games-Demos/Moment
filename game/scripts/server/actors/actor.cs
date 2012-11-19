@@ -80,6 +80,18 @@ function Actor::onStuck(%this, %obj)
       %obj.brain.onEvent("onStuck");
 }
 
+function Actor::onTargetEnterLOS(%this, %obj)
+{
+   if(isObject(%obj.brain))
+      %obj.brain.onEvent("onTargetEnterLOS");
+}
+
+function Actor::onTargetExitLOS(%this, %obj)
+{
+   if(isObject(%obj.brain))
+      %obj.brain.onEvent("onTargetExitLOS");
+}
+
 function Actor::onFinishedTalking(%this, %obj)
 {
    if(isObject(%obj.brain))
