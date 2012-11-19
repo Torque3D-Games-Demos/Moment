@@ -20,10 +20,4 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-// Class scripts
-exec("./speech.cs");
-
-// Data
-exec("./behaviors/init.cs");
-exec("./basicActions.cs");
-exec("./basicBrain.cs");
+exec("./patrolBehavior.cs");
