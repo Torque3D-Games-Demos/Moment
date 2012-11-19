@@ -22,6 +22,7 @@
 
 // Class scripts
 exec("./speech.cs");
+exec("./brains.cs");
 
 // Data
 exec("./behaviors/init.cs");

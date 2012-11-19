@@ -24,13 +24,6 @@ function Actor::onAdd(%this, %obj)
 {
    if(%obj.getClassName() $= "AIPlayer")
    {
-      if(%this.brainClass !$= "")
-      {
-         %obj.brain = new BehaviorManager() {
-            class = %this.brainClass;
-            object = %obj;
-         };
-      }
       if(%this.sensorData !$= "")
       {
          %obj.senses = new Sensor() {
