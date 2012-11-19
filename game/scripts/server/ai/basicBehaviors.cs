@@ -44,9 +44,9 @@ function AIPatrolBehavior::onAdd(%this)
 
 function AIPatrolBehavior::advance(%this)
 {
-   %this.object.brain.startAction(AIMoveToAction,
+   %this.object.brain.startAction(AIWalkToAction,
       %this.priority,
-      %this.path.getObject(%this.pathNode),
+      %this.path.getObject(%this.pathNode).getPosition(),
       %this, 0);
 }
 

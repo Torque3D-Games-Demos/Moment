@@ -39,9 +39,9 @@ new AIAction(AIMoveToAction) {
 function AIMoveToAction::onStart(%this, %obj, %data, %resume)
 {
    if(isObject(%data))
-      %obj.setMoveDestination(%data.getPosition());
+      %obj.setMoveDestination(%data.getPosition(), false);
    else
-      %obj.setMoveDestination(%data);
+      %obj.setMoveDestination(%data, false);
 }
 
 function AIMoveToAction::onEvent(%this, %obj, %data, %event, %evtData)
@@ -67,7 +67,7 @@ new AIAction(AIWalkToAction : AIMoveToAction) {
 
 function AIWalkToAction::onStart(%this, %obj, %data, %resume)
 {
-   %obj.setMoveSpeed(0.2);
+   %obj.setMoveSpeed(0.4);
    Parent::onStart(%this, %obj, %data, %resume);
 }
 
