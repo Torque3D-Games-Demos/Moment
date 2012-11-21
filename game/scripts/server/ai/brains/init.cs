@@ -21,3 +21,13 @@
 //-----------------------------------------------------------------------------
 
 exec("./vocalPainResponse.cs");
+
+function AIBrainClass(%obj, %class)
+{
+   if(isObject(%obj.brain))
+      %obj.brain.delete();
+   %obj.brain = new BehaviorManager() {
+      class = %class;
+      object = %obj;
+   };
+}
