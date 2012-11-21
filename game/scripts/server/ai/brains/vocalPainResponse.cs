@@ -20,11 +20,28 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-// Class scripts
-exec("./speech.cs");
-exec("./brains.cs");
+function BasicBrain::onAdd(%this)
+{
+   AIPlayerBrain::onAdd(%this);
+}
 
-// Data
-exec("./behaviors/init.cs");
-exec("./actions/init.cs");
-exec("./brains/init.cs");
+function BasicBrain::onEvent(%this, %event, %data)
+{
+   // Dispatch event to running actions.
+   %this.event(%event, %data);
+   
+   // React to event however we feel necessary.
+   switch$(%event)
+   {
+      case "onDamage":
+         %amount = getWord(%data, 0);
+         %pain = (%amount < 50)
+            ? "ouch"
+            : "ouch!";
+         %this.startAction(AIPainAction, getMin(0.9, %amount / 100), %pain);
+      
+      case "onContactSighted":
+         %this.startAction(AIGlanceAtAction, 0.1, getWord(%data, 0));
+   }
+}
+
