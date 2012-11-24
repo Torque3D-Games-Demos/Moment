@@ -23,11 +23,11 @@
 // Please do not override this method.
 function ShapeBase::damage(%this, %sourceObject, %position, %damage, %type)
 {
-   %this.getDataBlock().onDamage(%this, %sourceObject, %position, %damage, %type);
+   %this.getDataBlock().damage(%this, %sourceObject, %position, %damage, %type);
 }
 
 // Please override this method.
-function ShapeBaseData::onDamage(%this, %obj, %position, %source, %amount, %type)
+function ShapeBaseData::damage(%this, %obj, %position, %source, %amount, %type)
 {
    %obj.applyDamage(%amount);
 }

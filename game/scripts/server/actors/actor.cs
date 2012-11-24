@@ -91,10 +91,10 @@ function Actor::onFinishedTalking(%this, %obj)
       %obj.brain.onEvent("onFinishedTalking");
 }
 
-function Actor::onDamage(%this, %obj, %position, %source, %amount, %type)
+function Actor::onDamage(%this, %obj, %delta)
 {
    if(isObject(%obj.brain))
-      %obj.brain.onEvent("onDamage", %amount SPC %type);
+      %obj.brain.onEvent("onDamage", %delta);
 }
 
 function Actor::onNewContact(%this, %obj, %contact, %vis)

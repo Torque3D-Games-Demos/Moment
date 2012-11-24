@@ -26,8 +26,7 @@ function AIBrainVocalPainResponse::onEvent(%this, %event, %data)
    switch$(%event)
    {
       case "onDamage":
-         %amount = getWord(%data, 0);
-         %pain = (%amount < 50)
+         %pain = (%data < 50)
             ? "ouch"
             : "ouch!";
          %this.startAction(AIPainAction, getMin(0.9, %amount / 100), %pain);
