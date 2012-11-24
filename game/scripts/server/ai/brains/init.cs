@@ -21,6 +21,7 @@
 //-----------------------------------------------------------------------------
 
 exec("./vocalPainResponse.cs");
+exec("./brainClasses.cs");
 
 function AIBrainClass(%obj, %class)
 {
