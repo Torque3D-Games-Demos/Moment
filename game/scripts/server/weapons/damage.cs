@@ -29,5 +29,29 @@ function ShapeBase::damage(%this, %sourceObject, %position, %damage, %type)
 // Please override this method.
 function ShapeBaseData::damage(%this, %obj, %position, %source, %amount, %type)
 {
+   if(%obj.isDestroyed())
+      return;
+   
    %obj.applyDamage(%amount);
+}
+
+// And this one, if necessary.
+function ShapeBaseData::onDamage(%this, %obj, %delta)
+{
+   %damage = %obj.getDamageLevel();
+   %state = %obj.getDamageState();
+   
+   if(%damage > %this.destroyedLevel)
+   {
+      if(%state !$= "Desdtroyed")
+      {
+         %obj.setDamageLeve(%this.maxDamage);
+         %obj.setDamageLevel("Destroyed");
+      }
+   }
+   else if(%damage > %this.disabledLevel)
+   {
+      if(%state !$= "Disabled")
+         %obj.setDamageState("Disabled");
+   }
 }

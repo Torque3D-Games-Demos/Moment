@@ -59,6 +59,25 @@ function Actor::onUnmount(%this, %obj, %mount)
 }
 
 //-----------------------------------------------------------------------------
+// Damage
+
+function Actor::onDestroyed(%this, %obj)
+{
+   // Play a death animation.
+   %anims = %obj.getNumDeathAnimations();
+   if(%anims > 0)
+   {
+      %this.setActionThread("death" @ getRandom(1, %anims));
+   }
+}
+
+function Actor::onDamage(%this, %obj, %delta)
+{
+   if(isObject(%obj.brain) && %delta > 0)
+      %obj.brain.onEvent("onDamage", %delta);
+}
+
+//-----------------------------------------------------------------------------
 // AI events
 
 function Actor::onReachDestination(%this, %obj)
@@ -89,12 +108,6 @@ function Actor::onFinishedTalking(%this, %obj)
 {
    if(isObject(%obj.brain))
       %obj.brain.onEvent("onFinishedTalking");
-}
-
-function Actor::onDamage(%this, %obj, %delta)
-{
-   if(isObject(%obj.brain))
-      %obj.brain.onEvent("onDamage", %delta);
 }
 
 function Actor::onNewContact(%this, %obj, %contact, %vis)
