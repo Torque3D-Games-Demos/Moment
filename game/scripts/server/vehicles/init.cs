@@ -21,7 +21,7 @@
 //-----------------------------------------------------------------------------
 
 // Class scripts
-exec("./vehicle.cs");
+exec("./seating.cs");
 exec("./wheeledVehicle.cs");
 
 // Datablock scripts
