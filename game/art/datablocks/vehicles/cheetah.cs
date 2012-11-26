@@ -139,7 +139,7 @@ datablock WheeledVehicleData(Cheetah)
    numSeats = 4;
    driverSeat = 0;
 
-   useEyePoint = false;  // Use the vehicle's camera node rather than the player's
+   useEyePoint = false;  // Use the player's camera node rather than the vehicle's
 
    // 3rd person camera settings
    cameraRoll = false;        // Roll the camera with the vehicle
