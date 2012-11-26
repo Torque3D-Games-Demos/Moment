@@ -31,3 +31,20 @@ function Vehicle::seat(%this, %obj, %seat)
    if(%seat == %this.getDatablock().driverSeat)
       %obj.setControlObject(%this);
 }
+
+function serverCmdMountVehicle(%client, %vehicleGhost, %seat)
+{
+   // Resolve client's player.
+   %player = %client.resolvePlayer();
+   if(!isObject(%player))
+      return;
+   // Resolve ghost object.
+   %vehicle = %client.resolveObject(%vehicleGhost, "WheeledVehicle FlyingVehicle HoverVehicle");
+   if(!isObject(%vehicle))
+      return;
+   if(%vehicle.seatIsFree(%seat) &&
+      VectorLen(VectorSub(%player.getPosition(), %vehicle.getPosition())) < 10) //TODO: make this not a hack.
+   {
+      %vehicle.seat(%player, 0);
+   }
+}
