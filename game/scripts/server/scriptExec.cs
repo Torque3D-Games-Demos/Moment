@@ -25,5 +25,5 @@
 
 loadDir("weapons");
 loadDir("vehicles");
-loadDir("actors");
+loadDir("actor");
 loadDir("ai");
