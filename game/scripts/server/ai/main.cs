@@ -24,6 +24,6 @@
 exec("./speech.cs");
 
 // Data
-exec("./behaviors/init.cs");
-exec("./actions/init.cs");
-exec("./brains/init.cs");
+loadDir("actions");
+loadDir("behaviors");
+loadDir("brains");
