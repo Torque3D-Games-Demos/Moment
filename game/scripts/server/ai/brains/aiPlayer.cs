@@ -20,16 +20,9 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-exec("./aiPlayer.cs");
-exec("./vocalPainResponse.cs");
-exec("./brainClasses.cs");
-
-function AIBrainClass(%obj, %class)
+function AIPlayerBrain::onAdd(%this)
 {
-   if(isObject(%obj.brain))
-      %obj.brain.delete();
-   %obj.brain = new BehaviorManager() {
-      class = %class;
-      object = %obj;
-   };
+   %this.resources[0] = "move";
+   %this.resources[1] = "aim";
+   %this.resources[2] = "voice";
 }

@@ -20,16 +20,6 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-function AIPlayerBrain::onAdd(%this)
-{
-   // Utility function to provide standard AIPlayer resources.
-   %this.resources[0] = "move";
-   %this.resources[1] = "aim";
-   %this.resources[2] = "voice";
-}
-
-//-----------------------------------------------------------------------------
-
 new AIAction(AIMoveToAction) {
    resource = "move";
    allowWait = true;
