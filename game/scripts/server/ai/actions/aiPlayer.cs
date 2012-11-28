@@ -20,55 +20,6 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-new AIAction(AIMoveToAction) {
-   resource = "move";
-   allowWait = true;
-   receiveEvents = true;
-};
-
-function AIMoveToAction::onStart(%this, %obj, %data, %resume)
-{
-   if(isObject(%data))
-      %obj.setMoveDestination(%data.getPosition(), false);
-   else
-      %obj.setMoveDestination(%data, false);
-}
-
-function AIMoveToAction::onEvent(%this, %obj, %data, %event, %evtData)
-{
-   switch$(%event)
-   {
-      case "onReachDestination": return "Complete";
-      case "onStuck":            return "Failed";
-      default: return "Working";
-   }
-}
-
-function AIMoveToAction::onEnd(%this, %obj, %status)
-{
-   %obj.stop();
-}
-
-//-----------------------------------------------------------------------------
-
-new AIAction(AIWalkToAction : AIMoveToAction) {
-   class = AIMoveToAction;
-};
-
-function AIWalkToAction::onStart(%this, %obj, %data, %resume)
-{
-   %obj.setMoveSpeed(0.4);
-   Parent::onStart(%this, %obj, %data, %resume);
-}
-
-function AIWalkToAction::onEnd(%this, %obj, %status)
-{
-   %obj.setMoveSpeed(1);
-   Parent::onEnd(%this, %obj, %status);
-}
-
-//-----------------------------------------------------------------------------
-
 new AIAction(AISpeechAction) {
    resource = "voice";
    allowWait = true;
