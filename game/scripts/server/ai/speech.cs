@@ -20,9 +20,9 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-$AIPlayer::SpeechSlot = 0;
+$Player::SpeechSlot = 0;
 
-function AIPlayer::say(%this, %phrase, %voice)
+function Player::say(%this, %phrase, %voice)
 {
    if (!isObject(%voice))
       %voice = DefaultVoice;
@@ -32,14 +32,14 @@ function AIPlayer::say(%this, %phrase, %voice)
    %sound = %voice.getValue(%voice.getIndexFromKey(%phrase));
    if (isObject(%sound))
    {
-      %this.playAudio($AIPlayer::SpeechSlot, %sound);
+      %this.playAudio($Player::SpeechSlot, %sound);
       %this.stopTalking = %this.getDataBlock().schedule(%sound.getSoundDuration() * 1000, "onFinishedTalking", %this);
    }
 }
 
-function AIPlayer::stopTalking(%this)
+function Player::stopTalking(%this)
 {
-   %this.stopAudio($AIPlayer::SpeechSlot);
+   %this.stopAudio($Player::SpeechSlot);
    if (%this.stopTalking)
    {
       cancel(%this.stopTalking);
