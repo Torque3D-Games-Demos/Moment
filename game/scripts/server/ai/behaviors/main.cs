@@ -20,4 +20,5 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
+exec("./stateMachine.cs");
 exec("./patrolBehavior.cs");
